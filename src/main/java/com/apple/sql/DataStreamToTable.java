@@ -1,4 +1,4 @@
-package com.apple.table;
+package com.apple.sql;
 
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.common.typeinfo.Types;

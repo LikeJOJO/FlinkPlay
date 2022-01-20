@@ -13,11 +13,6 @@ import java.time.Duration;
 
 import static org.apache.flink.table.api.Expressions.$;
 
-/**
- * Copyright (c) 2020-2030 尚硅谷 All Rights Reserved
- * <p>
- * Created by wushengran on 2021/8/27  15:09
- */
 public class TopNExample {
     public static void main(String[] args) throws Exception{
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

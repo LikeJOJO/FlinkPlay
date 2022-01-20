@@ -2,16 +2,17 @@ package com.apple.wordcount;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
-/**
- * @author atguigu-mqx
- */
 public class StreamWordCount {
     public static void main(String[] args) throws Exception{
+        ParameterTool parameterTool = ParameterTool.fromArgs(args);
+        String jobName = parameterTool.get("jobName"); //提交脚本中需要显示指定--jobname dwd-LogBaseApp
+
         // 1. 创建执行环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 //        env.setParallelism(1);
@@ -36,6 +37,6 @@ public class StreamWordCount {
         sum.print();
 
         // 5. 执行
-        env.execute();
+        env.execute(jobName);
     }
 }

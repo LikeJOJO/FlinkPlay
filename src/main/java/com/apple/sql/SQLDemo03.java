@@ -12,17 +12,29 @@ public class SQLDemo03 {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tblEnv = StreamTableEnvironment.create(env);
-        tblEnv.executeSql("create table clicks (" +
-                "`user` string, " +
-                "`url` string, " +
-                "`ts` BIGINT) " +
-                " WITH (" +
-                " 'connector' = 'filesystem', " +
-                " 'path' = 'input/clicks.txt', " +
-                " 'format' = 'csv'" +
+//        tblEnv.executeSql("create table clicks (" +
+//                "`user` string, " +
+//                "`url` string, " +
+//                "`ts` BIGINT) " +
+//                " WITH (" +
+//                " 'connector' = 'filesystem', " +
+//                " 'path' = 'input/clicks.txt', " +
+//                " 'format' = 'csv'" +
+//                ")");
+        tblEnv.executeSql("CREATE TABLE Orders (\n" +
+                "    order_number BIGINT,\n" +
+                "    price        DECIMAL(32,2),\n" +
+                "    buyer        ROW<first_name STRING, last_name STRING>,\n" +
+                "    order_time   TIMESTAMP(3)\n" +
+                ") WITH (\n" +
+                "  'connector' = 'datagen'\n" +
                 ")");
-        Table clicksTable = tblEnv.sqlQuery("select user, url, ts from clicks");
-        tblEnv.toDataStream(clicksTable).print();
+        Table clicksTable = tblEnv.sqlQuery("select price, buyer, order_time from Orders");
+//        Table table2 = tblEnv.from("Orders").select($("price"), $("buyer"), $("order_time"));
+        tblEnv.createTemporaryView("new_orders", clicksTable);
+        Table table2 = tblEnv.from("new_orders").select($("price"), $("buyer"), $("order_time"));
+//        tblEnv.toDataStream(table2).print();
+        tblEnv.toChangelogStream(table2).print();
         env.execute();
     }
 }
