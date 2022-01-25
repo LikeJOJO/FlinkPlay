@@ -1,7 +1,7 @@
 package com.apple.chapter06;
 
 import com.apple.bean.Event;
-import com.apple.sources.ClickSource;
+import com.apple.windowing.UrlCountViewExample;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;

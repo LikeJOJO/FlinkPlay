@@ -2,7 +2,7 @@ package com.apple.chapter07;
 
 import com.apple.bean.Event;
 import com.apple.sources.ClickSource;
-import com.apple.chapter06.UrlCountViewExample;
+import com.apple.windowing.UrlCountViewExample;
 import com.apple.chapter06.UrlViewCount;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -22,11 +22,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-/**
- * Copyright (c) 2020-2030 尚硅谷 All Rights Reserved
- * <p>
- * Created by wushengran on 2021/8/21  9:25
- */
 public class TopNExample {
     public static void main(String[] args) throws Exception{
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

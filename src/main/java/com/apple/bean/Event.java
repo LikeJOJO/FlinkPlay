@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 /**
  * @author atguigu-mqx
  */
+
 public class Event {
     public String user;
     public String url;
@@ -17,6 +18,10 @@ public class Event {
         this.user = user;
         this.url = url;
         this.timestamp = timestamp;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public static Event of(String user, String url, Long timestamp) {
